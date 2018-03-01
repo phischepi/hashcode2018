@@ -1,4 +1,5 @@
-﻿using HashCode.Model;
+﻿using System;
+using HashCode.Model;
 
 namespace HashCode
 {
@@ -6,8 +7,9 @@ namespace HashCode
     {
         private static void Main(string[] args)
         {
+            var inNr = Console.ReadKey();
             var simulation = new Simulation();
-            WriterHelper.Init(simulation);
+            WriterHelper.Init(simulation, inNr);
 
             for (var i = 0; i < simulation.Steps; i++)
                 simulation.ComputeNextStep();

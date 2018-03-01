@@ -6,6 +6,11 @@ namespace HashCode.Model
 {
     internal class Vehicule
     {
+        public Vehicule()
+        {
+            CurrentPosition = new Tuple<long, long>(0, 0);
+        }
+
         public IList<Ride> Rides { get; set; }
         public Ride CurrentRide { get; set; }
 

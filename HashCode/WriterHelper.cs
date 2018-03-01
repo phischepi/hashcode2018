@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using HashCode.Model;
 
 namespace HashCode
@@ -19,9 +21,27 @@ namespace HashCode
             }
         }
 
-        public static void Init(Simulation simulation)
+        public static void Init(Simulation simulation, ConsoleKeyInfo inNr)
         {
-            var dir = new DirectoryInfo($".{Path.DirectorySeparatorChar}In")
+            var dir = new DirectoryInfo($".{Path.DirectorySeparatorChar}In");
+            var files = dir.EnumerateFiles().ToArray();
+
+            var pos = (int) inNr.KeyChar;
+            if (pos >= files.Count())
+                return;
+
+            var lines = File.ReadAllLines(files[pos].FullName);
+            var meta = lines[0].Split(' ');
+            simulation.Rows = long.Parse(meta[0]);
+            simulation.Columns = long.Parse(meta[1]);
+            for (long i = 0; i < long.Parse(meta[2]); i++)
+                simulation.Vehicules.Add(new Vehicule());
+
+            for (long i = 0; i < long.Parse(meta[3]); i++)
+                simulation.Rides.Add(new Ride());
+
+            simulation.Bonus = long.Parse(meta[4]);
+            simulation.Steps = long.Parse(meta[5]);
         }
     }
 }
