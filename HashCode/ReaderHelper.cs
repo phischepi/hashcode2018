@@ -17,11 +17,11 @@ namespace HashCode
                 Console.WriteLine($"[{i}] {files[i].Name}");
 
             var input = Console.ReadKey().KeyChar.ToString();
-            var all = int.TryParse(input, out var pos);
+            var one = int.TryParse(input, out var pos);
             if (pos >= files.Length)
                 return new List<Simulation>();
 
-            var filesToRead = all ? files : files.Skip(pos).Take(1);
+            var filesToRead = !one ? files : files.Skip(pos).Take(1);
 
             var sim = new List<Simulation>();
             foreach (var file in filesToRead)
