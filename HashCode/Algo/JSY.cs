@@ -7,7 +7,7 @@ namespace HashCode.Algo
     {
         public void Execute(Simulation sim)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

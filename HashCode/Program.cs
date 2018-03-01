@@ -1,5 +1,4 @@
-﻿using System;
-using HashCode.Algo;
+﻿using HashCode.Algo;
 using HashCode.Model;
 
 namespace HashCode

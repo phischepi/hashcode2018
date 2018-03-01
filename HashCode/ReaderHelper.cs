@@ -15,8 +15,7 @@ namespace HashCode
             for (var i = 0; i < files.Length; i++)
                 Console.WriteLine($"[{i}] {files[i].Name}");
 
-
-            var pos = (int) Console.ReadKey().KeyChar;
+            var pos = int.Parse(Console.ReadKey().KeyChar.ToString());
             if (pos >= files.Length)
                 return;
 
