@@ -31,7 +31,7 @@ namespace HashCode.Algo
             foreach (var ride in _sim.Rides)
             {
                 var score = ride.GetDistance();
-                List<long> res;
+                List<Ride> res;
                 if (!_sortedsRides.TryGetValue(score, out res))
                 {
                     res = new List<Ride>();
