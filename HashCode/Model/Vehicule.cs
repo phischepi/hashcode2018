@@ -40,6 +40,7 @@ namespace HashCode.Model
             if (CurrentRide != null)
                 return false;
             CurrentRide = ride;
+            TargetPosition = ride.EndPoint;
             return true;
         }
 
@@ -53,20 +54,21 @@ namespace HashCode.Model
         {
             if (TargetPosition == null)
                 return;
-            if (Equals(TargetPosition, CurrentPosition) && CurrentRide != null)
-            {
-                Rides.Add(CurrentRide);
-                CurrentRide = null;
-            }
 
             var item1 = CurrentPosition.Item1;
             var item2 = CurrentPosition.Item2;
             if (Math.Abs(TargetPosition.Item1 - CurrentPosition.Item1) > 0)
-                item1 = TargetPosition.Item1 > CurrentPosition.Item1 ? -1 : 1;
+                item1 += (TargetPosition.Item1 < CurrentPosition.Item1 ? -1 : 1);
             else if (Math.Abs(TargetPosition.Item2 - CurrentPosition.Item2) > 0)
-                item2 = TargetPosition.Item2 > CurrentPosition.Item2 ? -1 : 1;
+                item2 +=(TargetPosition.Item2 < CurrentPosition.Item2 ? -1 : 1);
 
             CurrentPosition = new Tuple<long, long>(item1, item2);
+
+            if (!Equals(TargetPosition, CurrentPosition) || CurrentRide == null)
+                return;
+            Rides.Add(CurrentRide);
+            CurrentRide = null;
+            TargetPosition = null;
         }
     }
 }
