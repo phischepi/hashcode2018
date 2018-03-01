@@ -18,10 +18,8 @@ namespace HashCode
 
             var input = Console.ReadKey().KeyChar.ToString();
             var one = int.TryParse(input, out var pos);
-            if (pos >= files.Length)
-                return new List<Simulation>();
 
-            var filesToRead = !one ? files : files.Skip(pos).Take(1);
+            var filesToRead = !one || pos >= files.Length ? files : files.Skip(pos).Take(1);
 
             var sim = new List<Simulation>();
             foreach (var file in filesToRead)

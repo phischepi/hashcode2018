@@ -1,5 +1,4 @@
 ﻿using HashCode.Algo;
-using HashCode.Model;
 
 namespace HashCode
 {
@@ -7,15 +6,14 @@ namespace HashCode
     {
         private static void Main(string[] args)
         {
-            var simulation = new Simulation();
             var sims = ReaderHelper.Init();
 
             foreach (var sim in sims)
             {
                 var algo = new JSY();
-                algo.Execute(simulation);
+                algo.Execute(sim);
 
-                WriterHelper.WriteResult(simulation);
+                WriterHelper.WriteResult(sim);
             }
         }
     }
