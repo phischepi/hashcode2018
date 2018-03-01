@@ -11,7 +11,7 @@ namespace HashCode.Model
             CurrentPosition = new Tuple<long, long>(0, 0);
         }
 
-        public IList<Ride> Rides { get; set; }
+        public IList<Ride> Rides { get; set; } = new List<Ride>();
         public Ride CurrentRide { get; set; }
 
         public Tuple<long, long> CurrentPosition { get; set; }
