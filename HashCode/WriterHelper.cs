@@ -25,11 +25,13 @@ namespace HashCode
         {
             var dir = new DirectoryInfo($".{Path.DirectorySeparatorChar}In");
             var files = dir.EnumerateFiles().ToArray();
+            
 
             var pos = (int) inNr.KeyChar;
             if (pos >= files.Length)
                 return;
 
+            Console.WriteLine($"Current input {files[pos].FullName}");
             var lines = File.ReadAllLines(files[pos].FullName);
             var meta = lines[0].Split(' ');
             simulation.Rows = long.Parse(meta[0]);

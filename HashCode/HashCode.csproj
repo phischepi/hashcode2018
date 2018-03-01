@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algo\HK.cs" />
+    <Compile Include="Algo\IAlgo.cs" />
+    <Compile Include="Algo\VB.cs" />
+    <Compile Include="Algo\SB.cs" />
+    <Compile Include="Algo\JSY.cs" />
+    <Compile Include="Algo\JJ.cs" />
     <Compile Include="Model\Ride.cs" />
     <Compile Include="Model\Simulation.cs" />
     <Compile Include="Model\Vehicule.cs" />
@@ -69,7 +75,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Algo\" />
     <Folder Include="Out\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
