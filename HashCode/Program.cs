@@ -8,9 +8,8 @@ namespace HashCode
     {
         private static void Main(string[] args)
         {
-            var inNr = Console.ReadKey();
             var simulation = new Simulation();
-            ReaderHelper.Init(simulation, inNr);
+            ReaderHelper.Init(simulation);
 
             var algo = new JSY();
             algo.Execute(simulation);

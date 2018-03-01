@@ -7,13 +7,16 @@ namespace HashCode
 {
     internal class ReaderHelper
     {
-        public static void Init(Simulation simulation, ConsoleKeyInfo inNr)
+        public static void Init(Simulation simulation)
         {
             var dir = new DirectoryInfo($".{Path.DirectorySeparatorChar}In");
             var files = dir.EnumerateFiles().ToArray();
 
+            for (var i = 0; i < files.Length; i++)
+                Console.WriteLine($"[{i}] {files[i].Name}");
 
-            var pos = (int) inNr.KeyChar;
+
+            var pos = (int) Console.ReadKey().KeyChar;
             if (pos >= files.Length)
                 return;
 
