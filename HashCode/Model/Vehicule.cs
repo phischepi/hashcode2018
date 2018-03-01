@@ -47,6 +47,7 @@ namespace HashCode.Model
         public void AddRide(Ride ride)
         {
             Rides.Add(ride);
+            CurrentPosition = ride.EndPoint;
         }
 
         public void ComputeNextPosition()
