@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using HashCode.Model;
 
 namespace HashCode.Algo
@@ -7,7 +8,8 @@ namespace HashCode.Algo
     {
         public void Execute(Simulation sim)
         {
-            foreach (var simToRemove in sim.Rides.Where(r => r.GetDistance() > sim.Steps))
+            var startPoint = new Vehicule();
+            foreach (var simToRemove in sim.Rides.Where(r => startPoint.GetDistanceTo(r.StartPoint) + r.GetDistance() > sim.Steps))
                 sim.Rides.Remove(simToRemove);
 
             for (; sim.CurrentStep < sim.Steps; sim.CurrentStep++)
@@ -24,31 +26,27 @@ namespace HashCode.Algo
             foreach (var vehicle in sim.Vehicules.Where(v => v.CurrentRide == null))
             {
                 var bestRide = sim.Rides
-                    .OrderBy(r => r.GetDistance() - vehicle.GetDistanceTo(r.StartPoint)
-                                  + (r.GetDistance() - vehicle.GetDistanceTo(r.StartPoint) < r.EarlyStart
+                    .OrderByDescending(r => r.GetDistance() - vehicle.GetDistanceTo(r.StartPoint)
+                                  + (r.GetDistance() - vehicle.GetDistanceTo(r.StartPoint) < r.LatestFinish
                                       ? sim.Bonus
                                       : 0))
                     .FirstOrDefault(r => vehicle.GetDistanceTo(r.StartPoint) + r.GetDistance() <= remaining);
-                var bestDistance = bestRide != null ? vehicle.GetDistanceTo(bestRide.StartPoint) : long.MaxValue;
+
                 var bestReward = bestRide != null
                     ? bestRide.GetDistance() - vehicle.GetDistanceTo(bestRide.StartPoint)
                       + (bestRide.GetDistance() - vehicle.GetDistanceTo(bestRide.StartPoint) < bestRide.EarlyStart
                           ? sim.Bonus
                           : 0) : long.MinValue;
-                var bestScore = bestDistance * 0.5 + bestReward * 0.5;
-                foreach (var ride in sim.Rides)
+
+                foreach (var ride in sim.Rides.Where(r => vehicle.GetDistanceTo(r.StartPoint) + r.GetDistance() <= remaining))
                 {
-                    var distance = vehicle.GetDistanceTo(ride.StartPoint);
                     var reward = ride.GetDistance() - vehicle.GetDistanceTo(ride.StartPoint)
-                                 + (ride.GetDistance() - vehicle.GetDistanceTo(bestRide.StartPoint) < ride.EarlyStart
+                                 + (ride.GetDistance() - vehicle.GetDistanceTo(ride.StartPoint) < ride.LatestFinish
                                      ? sim.Bonus
                                      : 0);
-                    var score = distance * 0.5 + reward * 0.5;
-                    if (score <= bestScore)
+                    if (bestReward >= reward)
                         continue;
-                    bestDistance = distance;
                     bestReward = reward;
-                    bestScore = score;
                     bestRide = ride;
                 }
 
