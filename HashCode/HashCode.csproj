@@ -42,11 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Ride.cs" />
+    <Compile Include="Model\Simulation.cs" />
+    <Compile Include="Model\Vehicule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReaderHelper.cs" />
+    <Compile Include="WriterHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="In\a_example.in" />
+    <None Include="In\b_should_be_easy.in" />
+    <None Include="In\c_no_hurry.in" />
+    <None Include="In\d_metropolis.in" />
+    <None Include="In\e_high_bonus.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Algo\" />
+    <Folder Include="Out\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

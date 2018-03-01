@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HashCode.Model
 {
-    internal static class Simulation
+    internal class Simulation
     {
-        public static long CurrentStep { get; } = 0;
+        public long CurrentStep { get; } = 0;
+        public long Rows { get; set; }
+        public long Columns { get; set; }
+        public IList<Ride> Rides { get; set; }
+        public IList<Vehicule> Vehicules { get; set; }
+        public long Steps { get; set; }
 
-        public static void ComputeNextStep()
+        public void ComputeNextStep()
         {
-
+            foreach (var vehicule in Vehicules) vehicule.ComputeNextPosition();
         }
     }
 }
