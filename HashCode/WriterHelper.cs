@@ -10,7 +10,7 @@ namespace HashCode
     {
         private const string FileName = "result.out";
 
-        public void WriteResult<TVehicule>(IEnumerable<TVehicule> vehicules, bool overwrite = false)
+        public static void WriteResult<TVehicule>(IEnumerable<TVehicule> vehicules, bool overwrite = false)
             where TVehicule : Vehicule
         {
             using (var file =
