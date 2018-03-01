@@ -5,7 +5,7 @@ namespace HashCode.Model
     internal class Simulation
     {
         public string InputFile { get; set; }
-        public long CurrentStep { get; } = 0;
+        public long CurrentStep { get; set; } = 0;
         public long Rows { get; set; }
         public long Columns { get; set; }
         public long Bonus { get; set; }
