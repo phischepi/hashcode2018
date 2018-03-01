@@ -23,16 +23,28 @@ namespace HashCode.Algo
             var remaining = sim.Steps - sim.CurrentStep;
             foreach (var vehicle in sim.Vehicules.Where(v => v.CurrentRide == null))
             {
-                var bestRide = sim.Rides.FirstOrDefault();
-                var bestDistance = long.MaxValue;
-                var bestReward = long.MinValue;
-                var bestScore = double.MinValue;
+                var bestRide = sim.Rides
+                    .OrderBy(r => r.GetDistance() - vehicle.GetDistanceTo(r.StartPoint)
+                                  + (r.GetDistance() - vehicle.GetDistanceTo(r.StartPoint) < r.EarlyStart
+                                      ? sim.Bonus
+                                      : 0))
+                    .FirstOrDefault(r => vehicle.GetDistanceTo(r.StartPoint) + r.GetDistance() <= remaining);
+                var bestDistance = bestRide != null ? vehicle.GetDistanceTo(bestRide.StartPoint) : long.MaxValue;
+                var bestReward = bestRide != null
+                    ? bestRide.GetDistance() - vehicle.GetDistanceTo(bestRide.StartPoint)
+                      + (bestRide.GetDistance() - vehicle.GetDistanceTo(bestRide.StartPoint) < bestRide.EarlyStart
+                          ? sim.Bonus
+                          : 0) : long.MinValue;
+                var bestScore = bestDistance * 0.5 + bestReward * 0.5;
                 foreach (var ride in sim.Rides)
                 {
                     var distance = vehicle.GetDistanceTo(ride.StartPoint);
-                    var reward = ride.GetDistance() + (remaining - ride.GetDistance() > 0 ? sim.Bonus : 0);
+                    var reward = ride.GetDistance() - vehicle.GetDistanceTo(ride.StartPoint)
+                                 + (ride.GetDistance() - vehicle.GetDistanceTo(bestRide.StartPoint) < ride.EarlyStart
+                                     ? sim.Bonus
+                                     : 0);
                     var score = distance * 0.5 + reward * 0.5;
-                    if (score <= bestScore && distance + reward <= remaining)
+                    if (score <= bestScore)
                         continue;
                     bestDistance = distance;
                     bestReward = reward;
