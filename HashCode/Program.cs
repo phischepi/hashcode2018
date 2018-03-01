@@ -7,6 +7,7 @@ namespace HashCode
         private static void Main(string[] args)
         {
             var simulation = new Simulation();
+            WriterHelper.Init(simulation);
 
             for (var i = 0; i < simulation.Steps; i++)
                 simulation.ComputeNextStep();

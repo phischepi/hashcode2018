@@ -12,11 +12,16 @@ namespace HashCode
             where TVehicule : Vehicule
         {
             using (var file =
-                new StreamWriter($".{Path.DirectorySeparatorChar}Output{Path.DirectorySeparatorChar}{FileName}"))
+                new StreamWriter($".{Path.DirectorySeparatorChar}Out{Path.DirectorySeparatorChar}{FileName}"))
             {
                 foreach (var vehicule in vehicules)
                     file.WriteLine(vehicule);
             }
+        }
+
+        public static void Init(Simulation simulation)
+        {
+            var dir = new DirectoryInfo($".{Path.DirectorySeparatorChar}In")
         }
     }
 }
