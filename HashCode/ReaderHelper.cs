@@ -40,11 +40,6 @@ namespace HashCode
 
             }
 
-            foreach (var ride in lines.Skip(1))
-            {
-            }
-
-
             simulation.Bonus = long.Parse(meta[4]);
             simulation.Steps = long.Parse(meta[5]);
         }
