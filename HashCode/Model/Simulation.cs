@@ -11,11 +11,5 @@ namespace HashCode.Model
         public IList<Ride> Rides { get; set; }
         public IList<Vehicule> Vehicules { get; set; }
         public long Steps { get; set; }
-
-        public void ComputeNextStep()
-        {
-            foreach (var vehicule in Vehicules)
-                vehicule.ComputeNextPosition();
-        }
     }
 }

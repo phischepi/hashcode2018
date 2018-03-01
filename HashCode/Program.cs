@@ -1,4 +1,5 @@
 ﻿using System;
+using HashCode.Algo;
 using HashCode.Model;
 
 namespace HashCode
@@ -9,10 +10,12 @@ namespace HashCode
         {
             var inNr = Console.ReadKey();
             var simulation = new Simulation();
-            WriterHelper.Init(simulation, inNr);
+            ReaderHelper.Init(simulation, inNr);
 
-            for (var i = 0; i < simulation.Steps; i++)
-                simulation.ComputeNextStep();
+            var algo = new JSY();
+            algo.Execute(simulation);
+
+            WriterHelper.WriteResult(simulation.Vehicules);
         }
     }
 }
