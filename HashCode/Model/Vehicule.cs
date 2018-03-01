@@ -19,7 +19,7 @@ namespace HashCode.Model
 
         public override string ToString()
         {
-            return $"{Rides.Count} {string.Join(" ", Rides.OrderBy(r => r.Order).Select(r => r.Id))}";
+            return $"{Rides.Count} {string.Join(" ", Rides.OrderBy(r => r.Order).Select(r => r.Order))}";
         }
 
         public long GetDistanceTo(Tuple<long, long> endPoint)

@@ -9,8 +9,7 @@ namespace HashCode.Model
             Order = order;
         }
 
-        public long Id { get; set; }
-        public long Order { get; set; }
+        public long Order { get; }
         public Tuple<long, long> StartPoint { get; set; }
         public Tuple<long, long> EndPoint { get; set; }
         public long EarlyStart { get; set; }
