@@ -27,7 +27,7 @@ namespace HashCode
             var files = dir.EnumerateFiles().ToArray();
 
             var pos = (int) inNr.KeyChar;
-            if (pos >= files.Count())
+            if (pos >= files.Length)
                 return;
 
             var lines = File.ReadAllLines(files[pos].FullName);
