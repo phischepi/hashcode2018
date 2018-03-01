@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using HashCode.Model;
 
@@ -22,6 +23,8 @@ namespace HashCode
                 foreach (var vehicule in vehicules)
                     outputFile.WriteLine(vehicule.ToString());
             }
+
+            Process.Start(dir.FullName);
         }
     }
 }
