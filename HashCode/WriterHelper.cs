@@ -1,5 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
+using HashCode.Model;
 
 namespace HashCode
 {
@@ -7,10 +8,15 @@ namespace HashCode
     {
         private const string FileName = "result.out";
 
-        public bool WriteResult(bool overwrite = false)
+        public void WriteResult<TVehicule>(IEnumerable<TVehicule> vehicules, bool overwrite = false)
+            where TVehicule : Vehicule
         {
-            var file = new FileInfo($".{Path.DirectorySeparatorChar}Output{Path.DirectorySeparatorChar}{FileName}");
-            return false;
+            using (var file =
+                new StreamWriter($".{Path.DirectorySeparatorChar}Output{Path.DirectorySeparatorChar}{FileName}"))
+            {
+                foreach (var vehicule in vehicules)
+                    file.WriteLine(vehicule);
+            }
         }
     }
 }
