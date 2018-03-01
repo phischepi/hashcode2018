@@ -43,6 +43,11 @@ namespace HashCode.Model
             return true;
         }
 
+        public void AddRide(Ride ride)
+        {
+            Rides.Add(ride);
+        }
+
         public void ComputeNextPosition()
         {
             if (TargetPosition == null)
