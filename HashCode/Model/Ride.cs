@@ -4,6 +4,11 @@ namespace HashCode.Model
 {
     internal class Ride
     {
+        public Ride(long order)
+        {
+            Order = order;
+        }
+
         public long Id { get; set; }
         public long Order { get; set; }
         public Tuple<long, long> StartPoint { get; set; }

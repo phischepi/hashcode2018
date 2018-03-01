@@ -8,12 +8,15 @@ namespace HashCode
         private static void Main(string[] args)
         {
             var simulation = new Simulation();
-            ReaderHelper.Init(simulation);
+            var sims = ReaderHelper.Init();
 
-            var algo = new JSY();
-            algo.Execute(simulation);
+            foreach (var sim in sims)
+            {
+                var algo = new JSY();
+                algo.Execute(simulation);
 
-            WriterHelper.WriteResult(simulation.Vehicules);
+                WriterHelper.WriteResult(simulation);
+            }
         }
     }
 }
