@@ -30,6 +30,21 @@ namespace HashCode
             for (long i = 0; i < long.Parse(meta[3]); i++)
                 simulation.Rides.Add(new Ride());
 
+            for (var i = 0; i < simulation.Rides.Count; i++)
+            {
+                var rideInfo = lines[i + 1].Split(' ');
+                simulation.Rides[i].StartPoint = new Tuple<long, long>(long.Parse(rideInfo[0]), long.Parse(rideInfo[1]));
+                simulation.Rides[i].EndPoint = new Tuple<long, long>(long.Parse(rideInfo[2]), long.Parse(rideInfo[3]));
+                simulation.Rides[i].EarlyStart = long.Parse(rideInfo[4]);
+                simulation.Rides[i].LatestFinish = long.Parse(rideInfo[5]);
+
+            }
+
+            foreach (var ride in lines.Skip(1))
+            {
+            }
+
+
             simulation.Bonus = long.Parse(meta[4]);
             simulation.Steps = long.Parse(meta[5]);
         }
