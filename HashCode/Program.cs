@@ -1,4 +1,5 @@
-﻿using HashCode.Algo;
+﻿using System.Threading;
+using HashCode.Algo;
 
 namespace HashCode
 {
@@ -10,10 +11,13 @@ namespace HashCode
 
             foreach (var sim in sims)
             {
-                var algo = new JSY();
-                algo.Execute(sim);
-
-                WriterHelper.WriteResult(sim);
+                var newThread = new Thread(() =>
+                {
+                    var algo = new JSY();
+                    algo.Execute(sim);
+                    WriterHelper.WriteResult(sim);
+                });
+                newThread.Start();
             }
         }
     }
